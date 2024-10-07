@@ -2,6 +2,7 @@ package com.ibk.moneyexchange.controller;
 
 import com.ibk.moneyexchange.controller.dto.MoneyExchangeDto;
 import com.ibk.moneyexchange.service.MoneyExchangeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class MoneyExchangeController {
     private final MoneyExchangeService moneyExchangeService;
 
     @PostMapping("/exchange")
-    public MoneyExchangeDto exchange(@RequestBody MoneyExchangeDto exchangeDto) {
+    public MoneyExchangeDto exchange(@Valid @RequestBody MoneyExchangeDto exchangeDto) {
         log.info("Exchanging Money: from {} to {}, amount: {}",
                 exchangeDto.getOriginCurrency(), exchangeDto.getTargetCurrency(), exchangeDto.getAmount());
         return moneyExchangeService.getMoneyExchange(exchangeDto);

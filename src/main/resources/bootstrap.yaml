@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: money-exchange
+
+proxy:
+  exchange-market:
+    url: ${EXCHANGE_MARKET_URL}
+    path: ${EXCHANGE_MARKET_PATH}

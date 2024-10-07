@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MoneyExchangeService {
     MoneyExchangeDto generateExchange(MoneyExchangeDto moneyExchangeDto);
+    List<MoneyExchangeDto> getExchanges();
 }

@@ -2,6 +2,7 @@ package com.ibk.moneyexchange.service.impl;
 
 import com.ibk.moneyexchange.controller.dto.MoneyExchangeDto;
 import com.ibk.moneyexchange.controller.handler.exceptions.ClientException;
+import com.ibk.moneyexchange.controller.handler.exceptions.DatabaseReadException;
 import com.ibk.moneyexchange.controller.handler.exceptions.DatabaseWriteException;
 import com.ibk.moneyexchange.repository.client.ExchangeMarketClient;
 import com.ibk.moneyexchange.repository.client.response.ExchangeMarketResponse;
@@ -12,6 +13,9 @@ import com.ibk.moneyexchange.utils.MapperUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -39,5 +43,19 @@ public class MoneyExchangeServiceImpl implements MoneyExchangeService {
             throw new DatabaseWriteException(ex);
         }
         return MapperUtils.toMoneyExchangeDto(moneyExchange);
+    }
+
+    @Override
+    public List<MoneyExchangeDto> getExchanges() {
+        List<MoneyExchange> moneyExchanges;
+        try {
+            log.info("Getting exchanges");
+            moneyExchanges = moneyExchangeRepository.findAll();
+
+        } catch (Exception ex) {
+            log.error("Error while getting money exchange list", ex);
+            throw new DatabaseReadException(ex);
+        }
+        return MapperUtils.toMoneyExchangeDtoList(moneyExchanges);
     }
 }

@@ -1,0 +1,21 @@
+CREATE TABLE MONEY_EXCHANGE_IBK (
+    id              int auto_increment primary key,
+    amount          double        null,
+    target_amount    double        null,
+    exchange_rate    double        null,
+    origin_currency  varchar(3)    null,
+    target_currency  varchar(3)    null,
+    created_at       datetime      null
+);
+
+INSERT INTO MONEY_EXCHANGE_IBK VALUES (1, 100.0, 350.0, 3.5, 'USD', 'PEN', '2024-10-05 22:49:59');
+
+
+CREATE TABLE USER_IBK (
+    id              int auto_increment primary key,
+    name            varchar(30)    null,
+    username        varchar(30)    null,
+    password        varchar(30)    null
+);
+
+INSERT INTO USER_IBK VALUES (1, 'STEFANY', 'knox', 'knox123');

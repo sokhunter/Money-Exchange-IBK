@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  money-exchange-service:
+    image: money-exchange-ibk
+    container_name: money-exchange-ibk-ms
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=jdbc:h2:mem:money_exchange_db
+      - DATABASE_DRIVER=org.h2.Driver
+      - DATABASE_USERNAME=sa
+      - DATABASE_PASSWORD=
+      - DATABASE_SHOW_SQL=false
+      - DATABASE_DIALECT=org.hibernate.dialect.H2Dialect
+
+      - EXCHANGE_MARKET_URL=https://open.er-api.com
+      - EXCHANGE_MARKET_PATH=/v6/latest/{currency}
+      - auth-token.secret=tokensecret
+      - auth-token.expiration-milliseconds=180000
+      - auth-token.enabled=true

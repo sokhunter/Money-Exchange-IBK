@@ -1,9 +1,6 @@
 package com.ibk.moneyexchange.repository.database.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "MONEY_EXCHANGE_IBK")
 @Entity
 public class MoneyExchange {
     @Id

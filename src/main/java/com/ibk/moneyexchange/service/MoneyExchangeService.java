@@ -2,6 +2,8 @@ package com.ibk.moneyexchange.service;
 
 import com.ibk.moneyexchange.controller.dto.MoneyExchangeDto;
 
+import java.util.List;
+
 public interface MoneyExchangeService {
-    MoneyExchangeDto getMoneyExchange(MoneyExchangeDto moneyExchangeDto);
+    MoneyExchangeDto generateExchange(MoneyExchangeDto moneyExchangeDto);
 }

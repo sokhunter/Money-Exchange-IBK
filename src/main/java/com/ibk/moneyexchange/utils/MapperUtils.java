@@ -1,11 +1,12 @@
 package com.ibk.moneyexchange.utils;
 
 import com.ibk.moneyexchange.controller.dto.MoneyExchangeDto;
-import com.ibk.moneyexchange.proxy.response.ExchangeMarketResponse;
+import com.ibk.moneyexchange.repository.client.response.ExchangeMarketResponse;
 import com.ibk.moneyexchange.repository.database.entity.MoneyExchange;
 import lombok.experimental.UtilityClass;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @UtilityClass
 public class MapperUtils {
@@ -30,6 +31,10 @@ public class MapperUtils {
                 .originCurrency(moneyExchange.getOriginCurrency())
                 .targetAmount(moneyExchange.getTargetAmount())
                 .build();
+    }
+
+    public static List<MoneyExchangeDto> toMoneyExchangeDtoList(List<MoneyExchange> moneyExchanges) {
+        return moneyExchanges.stream().map(MapperUtils::toMoneyExchangeDto).toList();
     }
 
     private Double getTargetAmount(Double amount, Double rate) {

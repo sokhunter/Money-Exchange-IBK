@@ -1,11 +1,8 @@
 package com.ibk.moneyexchange.controller.handler;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.ibk.moneyexchange.controller.handler.exceptions.ClientException;
-import com.ibk.moneyexchange.controller.handler.exceptions.DatabaseException;
+import com.ibk.moneyexchange.controller.handler.exceptions.BusinessException;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
 
@@ -13,34 +10,17 @@ import java.time.LocalDateTime;
 public class BusinessErrorDto {
     private HttpStatus status;
     private String message;
-    private String details;
     private LocalDateTime timestamp;
 
-    public BusinessErrorDto(InvalidFormatException ex) {
+    public BusinessErrorDto() {
         this.status = HttpStatus.BAD_REQUEST;
         this.message = "Datos ingresados inválidos";
-        this.details = ex.getMessage();
         this.timestamp = LocalDateTime.now();
     }
 
-    public BusinessErrorDto(MethodArgumentNotValidException ex) {
-        this.status = HttpStatus.BAD_REQUEST;
-        this.message = "Datos ingresados inválidos";
-        this.details = ex.getMessage();
-        this.timestamp = LocalDateTime.now();
-    }
-
-    public BusinessErrorDto(ClientException ex) {
-        this.status = HttpStatus.INTERNAL_SERVER_ERROR;
-        this.message = "Error por el lado del servicio market-exchange";
-        this.details = ex.getMessage();
-        this.timestamp = LocalDateTime.now();
-    }
-
-    public BusinessErrorDto(DatabaseException ex) {
-        this.status = HttpStatus.INTERNAL_SERVER_ERROR;
-        this.message = "Error al momento de almacenar el registro en la base de datos";
-        this.details = ex.getMessage();
+    public BusinessErrorDto(BusinessException ex) {
+        this.status = ex.getStatus();
+        this.message = ex.getMessage();
         this.timestamp = LocalDateTime.now();
     }
 }

@@ -1,21 +1,15 @@
-server:
-  port: 8080
-
 spring:
   application:
     name: money-exchange
 
   datasource:
-    url: jdbc:h2:mem:money_exchange_db
-    driverClassName: org.h2.Driver
-    username: sa
-    password:
+    url: ${DATABASE_URL}
+    driverClassName: ${DATABASE_DRIVER}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jpa:
-    show-sql: false
-    database-platform: org.hibernate.dialect.H2Dialect
-  h2:
-    console:
-      enabled: true
+    show-sql: ${DATABASE_SHOW_SQL}
+    database-platform: ${DATABASE_DIALECT}
 
 
 proxy:

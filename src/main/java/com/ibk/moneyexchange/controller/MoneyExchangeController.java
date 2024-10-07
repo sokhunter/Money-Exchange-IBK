@@ -21,6 +21,6 @@ public class MoneyExchangeController {
     public MoneyExchangeDto exchange(@Valid @RequestBody MoneyExchangeDto exchangeDto) {
         log.info("Exchanging Money: from {} to {}, amount: {}",
                 exchangeDto.getOriginCurrency(), exchangeDto.getTargetCurrency(), exchangeDto.getAmount());
-        return moneyExchangeService.getMoneyExchange(exchangeDto);
+        return moneyExchangeService.generateExchange(exchangeDto);
     }
 }

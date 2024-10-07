@@ -9,3 +9,8 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password:
+
+auth-token:
+  secret: tokentest
+  expiration-milliseconds: 180000
+  enabled: false
